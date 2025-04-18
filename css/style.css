@@ -1,0 +1,259 @@
+.heading{
+    margin-bottom: 20px !important;
+}
+.portfolio-block{
+    padding-top: 20px !important;
+}
+form{
+    box-shadow: none !important;
+    max-width: 100% !important;
+}
+label {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 15px;
+    color: #777777;
+    text-transform: uppercase;
+    font-family: Montserrat,sans-serif;
+    padding: 5px;
+}
+.card{
+    border: none !important;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 0rem !important;
+}
+.portfolio-block form {
+    padding: 25px !important;
+}
+.gradient {
+    background: linear-gradient(120deg,#7f70f5,#0ea0ff);
+    color: #fff;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+input[type='checkbox'] {
+    width:30px;
+    height:30px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+
+@media (min-width: 768px){
+    .portfolio-block form {
+        padding: 0px !important;
+    }
+
+    .portfolio-block form {
+        max-width: 100% !important;
+        padding: 0px !important;
+        margin: auto;
+        box-shadow: none !important;
+    }
+}
+.has-error .form-control {
+    border: 1px solid #ced4da !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+}
+
+.collapse{
+    padding: 30px !important;
+}
+.card-header a {
+    color: #0ea0ff;
+    text-decoration: none;
+    background-color: transparent;
+    font-size: 20px;
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.2;
+
+}
+
+.button{
+    background-color: black !important;
+    border: none !important;
+    max-width: 100px;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    padding: 15px !important;
+}
+
+.button:hover{
+    background: rgba(0,94,255,1);
+    background: -moz-linear-gradient(left, rgba(0,94,255,1) 0%, rgba(42,84,168,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,94,255,1)), color-stop(100%, rgba(42,84,168,1)));
+    background: -webkit-linear-gradient(left, rgba(0,94,255,1) 0%, rgba(42,84,168,1) 100%);
+    background: -o-linear-gradient(left, rgba(0,94,255,1) 0%, rgba(42,84,168,1) 100%);
+    background: -ms-linear-gradient(left, rgba(0,94,255,1) 0%, rgba(42,84,168,1) 100%);
+    background: linear-gradient(to right, rgba(0,94,255,1) 0%, rgba(42,84,168,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#005eff', endColorstr='#2a54a8', GradientType=1 );
+}
+
+.form-horizontal .form-group {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+.form-group {
+    margin-bottom: 0px !important;
+}
+.dropdown-toggle::after {
+    display:none !important;
+    margin-right: 20px;
+}
+
+.card-header{
+    background-color: rgba(0,0,0,0.03)!important;
+}
+
+.terms{
+    color: #0ea0ff !important;
+}
+
+.choice{
+    margin-right: 1px !important;
+}
+
+.main{
+    max-width: 1310px !important;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 30px;
+}
+
+.ui-datepicker table{
+    background-color: #fdfdfd;
+}
+
+.ui-datepicker-current-day a, .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+    background:	#ffffc0 !important;
+    color: black !important;
+    border-color: gray !important;
+}
+
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+    border: none !important;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active,  a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover {
+    background:#25acf9 !important;
+    font-weight: normal !important;
+    color: #ffffff !important;
+}
+
+.ui-datepicker-header{
+    background: #0080e2 !important;
+    color: white !important;
+}
+
+.ui-datepicker{
+    width: 420px !important;
+    height: 420px !important;
+}
+
+.ui-datepicker table{
+    height: 359px!important;
+}
+
+.ui-datepicker a{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    background: #e9effb !important;
+}
+
+.ui-datepicker-unselectable span{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+}
+
+.ui-datepicker-next span{
+    background-color: white;
+}
+.ui-datepicker-prev span{
+    background-color: white;
+}
+
+.ui-datepicker-other-month{
+    opacity: 0.7;
+}
+.ui-widget-content{
+    margin-top: 20px;
+    border: none!important;
+}
+
+.maincontainer{
+    background-color: rgba(255,255,255, 0.6)
+}
+
+@media only screen and (max-width: 800px) {
+    .ui-datepicker{
+        width: 370px !important;
+        height: 370px !important;
+    }
+
+    .ui-widget, .ui-widget-content{
+        width: 360px !important;
+    }
+    .ui-datepicker a{
+        height: 40px;
+        width: 40px;
+        border-radius: 5px;
+        background: #e9effb !important;
+    }
+
+    .ui-datepicker table{
+        height: 259px!important;
+    }
+    .ui-datepicker-unselectable span{
+        height: 40px;
+        width: 40px;
+        border-radius: 5px;
+    }
+
+    .ui-widget-content{
+        margin-top: 10px;
+        border: none!important;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .ui-datepicker{
+        width: 250px !important;
+        height: 250px !important;
+    }
+
+    .ui-widget, .ui-widget-content{
+        width: 250px !important;
+    }
+    .ui-datepicker a{
+        height: 25px;
+        width: 25px;
+        border-radius: 5px;
+        background: #e9effb !important;
+    }
+
+    .ui-datepicker table{
+        height: 159px!important;
+    }
+    .ui-datepicker-unselectable span{
+        height: 25px;
+        width: 25px;
+        border-radius: 5px;
+    }
+
+    .ui-widget-content{
+        margin-top: 0px;
+        border: none!important;
+    }
+}
