@@ -1,0 +1,16 @@
+.underline:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: #B2CC4A;
+  z-index: -1;
+}
+
+.mb-5 {
+  margin-bottom: 1rem !important;
+}
+
