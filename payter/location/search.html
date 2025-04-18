@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Search with JavaScript Filters</title>
+    <script type='text/javascript' src='knockout.js'></script>
+
+</head>
+
+<body>
+    <h1>Dynamic Search with JavaScript Filters</h1>
+    <select data-bind="foreach: items">
+        <option>Item <span data-bind="text: name"></span></option>
+    </select>
+
+    <select data-bind="foreach: items">
+        <option>Item <!--ko text: name--><!--/ko--></option>
+    </select>
+</body>
+
+</html>

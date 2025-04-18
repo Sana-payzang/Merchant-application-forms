@@ -1,0 +1,1110 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Create Payter Merchant Account</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"
+        type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        type="text/javascript"></script>
+    <script type='text/javascript' src='knockout.js'></script>
+    <script>
+        var form_2 = false;
+
+        $(document).ready(function () {
+            // alert($('ion-icon[name="create-outline"]').attr('id'));
+            $('ion-icon[name="create-outline"]').each(function (index) {
+                var i = $(this).attr('id').replace('edit_', '');
+                $("#" + i).attr("readonly", true);
+                $(this).click(function () {
+                    $("#" + i).removeAttr("readonly");
+                    $("#" + i).focus();
+                });
+                $("#" + i).focusout(function () {
+                    $("#" + i).attr("readonly", true);
+                });
+
+            });
+
+            $(".selection").each(function (index) {
+                $(this).click(function () {
+                });
+            });
+
+            $(".bank_details").hide();
+
+            $("#next_1").click(function (e) {
+                var mndFileds = new Array('match_Company', 'match_LEADCF2');
+                var fldLangVal = new Array('Company', 'EIN\x2FTIN\x2FTax\x20ID');
+                for (i = 0; i < mndFileds.length; i++) {
+                    var fieldObj = document.forms['WebToLeads857022000080738026'][mndFileds[i]];
+                    if (fieldObj) {
+                        if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                            if (fieldObj.type == 'file') {
+                                alert('Please select a file to upload.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                            alert('Please enter ' + fldLangVal[i] + '.');
+                            fieldObj.focus();
+                            return false;
+                        } else if (fieldObj.nodeName == 'SELECT') {
+                            if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                alert('Please select ' + fldLangVal[i] + '.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+
+                if(!$("#match_LEADCF13").val() || !$("#match_LEADCF15").val() || !$("#match_LEADCF14").val()){
+                    $(".bank_details").show();
+                    
+                    if($("#check_bankdetails").is(":checked")){
+                        nextForm();
+                    }
+
+                }
+                else{
+                    $(".bank_details").hide();
+                    nextForm();
+                }
+
+
+            });
+            $("#next_2").click(function (e) {
+                var mndFileds = new Array('match_LEADCF51', 'match_Street', 'match_City', 'match_State', 'match_Zip_Code');
+                var fldLangVal = new Array('Number of Devices', 'Street', 'City', 'State', 'Zip\x20Code');
+                for (i = 0; i < mndFileds.length; i++) {
+                    var fieldObj = document.forms['WebToLeads857022000080738026'][mndFileds[i]];
+                    if (fieldObj) {
+                        if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                            if (fieldObj.type == 'file') {
+                                alert('Please select a file to upload.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                            alert('Please enter ' + fldLangVal[i] + '.');
+                            fieldObj.focus();
+                            return false;
+                        } else if (fieldObj.nodeName == 'SELECT') {
+                            if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                alert('Please select ' + fldLangVal[i] + '.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+
+                $("#State").val($("#match_State").val());
+                nextForm();
+
+            });
+            $("#next_3").click(function (e) {
+                var mndFileds = new Array('match_LEADCF35', 'match_First_Name', 'match_Last_Name', 'match_Email', 'match_Phone');
+                var fldLangVal = new Array('Job\x20Title', 'First\x20Name', 'Last\x20Name', 'Email', 'Phone');
+                for (i = 0; i < mndFileds.length; i++) {
+                    var fieldObj = document.forms['WebToLeads857022000080738026'][mndFileds[i]];
+                    if (fieldObj) {
+                        if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                            if (fieldObj.type == 'file') {
+                                alert('Please select a file to upload.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                            alert(fldLangVal[i] + ' cannot be empty.');
+                            fieldObj.focus();
+                            return false;
+                        } else if (fieldObj.nodeName == 'SELECT') {
+                            if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                alert(fldLangVal[i] + ' cannot be none.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+
+                $("#LEADCF8").val($("#match_LEADCF8").val());
+                nextForm();
+
+            });
+            $("#next_4").click(function (e) {
+                var mndFileds = new Array('checkbox-2');
+                var fldLangVal = new Array('the Terms & Conditions and Pricing Plan.');
+                for (i = 0; i < mndFileds.length; i++) {
+                    var fieldObj = document.forms['WebToLeads857022000080738026'][mndFileds[i]];
+                    if (fieldObj) {
+                        if (fieldObj.type == 'checkbox') {
+                            if (fieldObj.checked == false) {
+                                alert('Please accept  ' + fldLangVal[i]);
+                                fieldObj.focus();
+                                return false;
+                            }
+                        }
+
+                    }
+                }
+                nextForm();
+            });
+        });
+
+
+    </script>
+</head>
+
+<body>
+    <!-- Note :
+   - You can modify the font style and form style to suit your website. 
+   - Code lines with comments Do not remove this code are required for the form to work properly, make sure that you do not remove these lines of code. 
+   - The Mandatory check script can modified as to suit your business needs. 
+   - It is important that you test the modified form before going live.-->
+    <div class="form__container container-fluid px-5">
+        <div class="title__container">
+            <img src="https://www.payter.us/img/PTR%20Asset%20LRG.png" alt="profile_picture" />
+
+        </div>
+        <div class="body__container">
+            <div class="left__container ">
+                <div class="side__titles">
+                    <div class="title__name ">
+                        <h3>Business Information</h3>
+                        <p>ㅤ</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Device & Location Information</h3>
+                        <p>ㅤ</p>
+                    </div>
+
+                    <div class="title__name">
+                        <h3>Contact Information</h3>
+                        <p>ㅤ</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Terms & Conditions</h3>
+                        <p>ㅤ</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Review & Submit</h3>
+                        <p>ㅤ</p>
+                    </div>
+                </div>
+                <div class="progress__bar__container">
+                    <ul>
+                        <li class="active" id="icon1"><ion-icon name="business-outline"></ion-icon></li>
+                        <li id="icon2"><ion-icon name="location-outline"></ion-icon></li>
+                        <li id="icon3"><ion-icon name="person-outline"></ion-icon></li>
+                        <li id="icon4"><ion-icon name="document-text-outline"></ion-icon></li>
+                        <li id="icon5"><ion-icon name="checkmark-done-outline"></ion-icon></li>
+                    </ul>
+                </div>
+            </div>
+            <div id='crmWebToEntityForm' class="right__container align-items-center">
+
+                <form id='webform857022000080738026' action='https://crm.zoho.com/crm/WebToLeadForm'
+                    name=WebToLeads857022000080738026 method='POST'
+                    onSubmit='javascript:document.charset="UTF-8"; return checkMandatory857022000080738026()'
+                    accept-charset='UTF-8'>
+                    <input type='text' style='display:none;' name='xnQsjsdp'
+                        value='7fcff6551ed9f6dff34fa4da2ed7797a16b090b5afde4263a47137d11b599292'></input>
+                    <input type='hidden' name='zc_gad' id='zc_gad' value=''></input>
+                    <input type='text' style='display:none;' name='xmIwtLD'
+                        value='24f0be6e8ff501081269d8af02748501920b6edb4264286aa98355cc235eee4d55a6555ba9d3945736d7db88c756f5c5'></input>
+                    <input type='text' style='display:none;' name='actionType' value='TGVhZHM='></input>
+                    <input type='text' style='display:none;' name='returnURL' value='null'> </input>
+                    <!-- Do not remove this code. -->
+                    <!-- <style>
+                        html,
+                        body {
+                            margin: 0px;
+                        }
+
+                        #crmWebToEntityForm.zcwf_lblLeft {
+                            width: 100%;
+                            padding: 25px;
+                            margin: 0 auto;
+                            box-sizing: border-box;
+                        }
+
+                        #crmWebToEntityForm.zcwf_lblLeft * {
+                            box-sizing: border-box;
+                        }
+
+                        #crmWebToEntityForm {
+                            text-align: left;
+                        }
+
+                        #crmWebToEntityForm * {
+                            direction: ltr;
+                        }
+
+                        .zcwf_lblLeft .zcwf_title {
+                            word-wrap: break-word;
+                            padding: 0px 6px 10px;
+                            font-weight: bold
+                        }
+
+                        .zcwf_lblLeft.cpT_primaryBtn:hover {
+                            background: linear-gradient(#02acff 0, #006be4 100%) no-repeat padding-box !important;
+                            box-shadow: 0 -2px 0 0 #0159b9 inset !important;
+                            border: 0 !important;
+                            color: #fff !important;
+                            outline: 0 !important;
+                        }
+
+                        .zcwf_lblLeft .zcwf_col_fld input[type=text],
+                        input[type=password],
+                        .zcwf_lblLeft .zcwf_col_fld textarea {
+                            width: 60%;
+                            border: 1px solid #c0c6cc !important;
+                            resize: vertical;
+                            border-radius: 2px;
+                            float: left;
+                        }
+
+                        .zcwf_lblLeft .zcwf_col_lab {
+                            width: 30%;
+                            word-break: break-word;
+                            padding: 0px 6px 0px;
+                            margin-right: 10px;
+                            margin-top: 5px;
+                            float: left;
+                            min-height: 1px;
+                        }
+
+                        .zcwf_lblLeft .zcwf_col_fld {
+                            float: left;
+                            width: 68%;
+                            padding: 0px 6px 0px;
+                            position: relative;
+                            margin-top: 5px;
+                        }
+
+                        .zcwf_lblLeft .zcwf_privacy {
+                            padding: 6px;
+                        }
+
+                        .zcwf_lblLeft .wfrm_fld_dpNn {
+                            display: none;
+                        }
+
+                        .dIB {
+                            display: inline-block;
+                        }
+
+                        .zcwf_lblLeft .zcwf_col_fld_slt {
+                            width: 60%;
+                            border: 1px solid #ccc;
+                            background: #fff;
+                            border-radius: 4px;
+                            font-size: 12px;
+                            float: left;
+                            resize: vertical;
+                            padding: 2px 5px;
+                        }
+
+                        .zcwf_lblLeft .zcwf_row:after,
+                        .zcwf_lblLeft .zcwf_col_fld:after {
+                            content: '';
+                            display: table;
+                            clear: both;
+                        }
+
+                        .zcwf_lblLeft .zcwf_col_help {
+                            float: left;
+                            margin-left: 7px;
+                            font-size: 12px;
+                            max-width: 35%;
+                            word-break: break-word;
+                        }
+
+                        .zcwf_lblLeft .zcwf_help_icon {
+                            cursor: pointer;
+                            width: 16px;
+                            height: 16px;
+                            display: inline-block;
+                            background: #fff;
+                            border: 1px solid #c0c6cc;
+                            color: #c1c1c1;
+                            text-align: center;
+                            font-size: 11px;
+                            line-height: 16px;
+                            font-weight: bold;
+                            border-radius: 50%;
+                        }
+
+                        .zcwf_lblLeft .zcwf_row {
+                            margin: 15px 0px;
+                        }
+
+                        .zcwf_lblLeft .formsubmit {
+                            margin-right: 5px;
+                            cursor: pointer;
+                            color: var(--baseColor);
+                            font-size: 12px;
+                        }
+
+                        .zcwf_lblLeft .zcwf_privacy_txt {
+                            width: 90%;
+                            color: rgb(0, 0, 0);
+                            font-size: 12px;
+                            font-family: Arial;
+                            display: inline-block;
+                            vertical-align: top;
+                            color: var(--baseColor);
+                            padding-top: 2px;
+                            margin-left: 6px;
+                        }
+
+                        .zcwf_lblLeft .zcwf_button {
+                            font-size: 12px;
+                            color: var(--baseColor);
+                            border: 1px solid #c0c6cc;
+                            padding: 3px 9px;
+                            border-radius: 4px;
+                            cursor: pointer;
+                            max-width: 120px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+
+                        .zcwf_lblLeft .zcwf_tooltip_over {
+                            position: relative;
+                        }
+
+                        .zcwf_lblLeft .zcwf_tooltip_ctn {
+                            position: absolute;
+                            background: #dedede;
+                            padding: 3px 6px;
+                            top: 3px;
+                            border-radius: 4px;
+                            word-break: break-word;
+                            min-width: 100px;
+                            max-width: 150px;
+                            color: var(--baseColor);
+                            z-index: 100;
+                        }
+
+                        .zcwf_lblLeft .zcwf_ckbox {
+                            float: left;
+                        }
+
+                        .zcwf_lblLeft .zcwf_file {
+                            width: 55%;
+                            box-sizing: border-box;
+                            float: left;
+                        }
+
+                        .clearB:after {
+                            content: '';
+                            display: block;
+                            clear: both;
+                        }
+
+                        @media all and (max-width: 600px) {
+
+                            .zcwf_lblLeft .zcwf_col_lab,
+                            .zcwf_lblLeft .zcwf_col_fld {
+                                width: auto;
+                                float: none !important;
+                            }
+
+                            .zcwf_lblLeft .zcwf_col_help {
+                                width: 40%;
+                            }
+                        }
+                    </style> -->
+                    <fieldset id="form1">
+                        <div class="sub__title__container">
+                            <p>Step 1/5</p>
+                            <h2>Business Information</h2>
+                            <p>Provide business information</p>
+                        </div>
+                        <div class="input__container">
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Company Name</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Legal, Registered Company Name" id='match_Company'
+                                        name="match_Company" data-bind="value: bind_company">
+                                </div>
+                                <div>
+                                    <label class="field-label ">DBA</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Doing Business As" id='match_LEADCF34' name="match_LEADCF34"
+                                        data-bind="value: bind_dba">
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">EIN/TIN/Tax ID</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="EIN/TIN/Tax ID" id='match_LEADCF2' name="match_LEADCF2"
+                                        data-bind="value: bind_ein">
+                                </div>
+
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Bank Name</label>
+                                    <input type="text" class="form-field required form-control" id='match_LEADCF13'
+                                        name="match_LEADCF13" placeholder="Bank Name" data-bind="value: bind_bank_name">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Routing Number</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Routing Number" id='match_LEADCF15' name="match_LEADCF15"
+                                        data-bind="value: bind_routingNum">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Account Number</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Account Number" id='match_LEADCF14' name="match_LEADCF14"
+                                        data-bind="value: bind_accountNum">
+                                </div>
+                                
+                            </div>
+                            <div class="bank_details">
+                                <input type="checkbox" id="check_bankdetails"> I acknowledge that if bank details are not provided, then the bank details associated with our first merchant account will be used.
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <a class="nxt__btn" id="next_1">Next</a>
+                        </div>
+                    </fieldset>
+                    <fieldset class="active__form" id="form2">
+                        <div class="sub__title__container">
+                            <p>Step 2/5</p>
+                            <h2>Device & Location Information</h2>
+                            <p>Provide device & location information</p>
+                        </div>
+                        <div class="input__container">
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Number of Devices</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Number of Devices" id='match_LEADCF51' name='match_LEADCF51'
+                                        maxlength='9' data-bind="value: bind_numofdevices">
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Physical Address of Devices</label>
+                                    <input type="text" class="form-field requried form-control"
+                                        placeholder="Business Street Address" id='match_Street' name="match_Street"
+                                        data-bind="value: bind_biz_street">
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">City</label>
+                                    <input type="text" class="form-field required form-control" id='match_City'
+                                        name="match_City" placeholder="City" data-bind="value: bind_biz_city">
+                                </div>
+                                <div>
+                                    <label class="field-label">State</label>
+                                    <select class='form-field required w-input form-control' id='match_State'
+                                        name="match_State">
+                                        <option selected hidden value="-None-">-- Select --</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div>
+
+                                    <label class="field-label">Zip Code</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Zip Code"
+                                        id='match_Zip_Code' name="match_Zip_Code" data-bind="value: bind_biz_zip">
+                                </div>
+
+                            </div>
+                            <div class="buttons">
+                                <a class="prev__btn" onclick="prevForm();">Back</a>
+                                <a class="nxt__btn" id="next_2">Next</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="active__form" id="form3">
+                        <div class="sub__title__container">
+                            <p>Step 3/5</p>
+                            <h2>Contact Information</h2>
+                            <p>Please provide your or authorized contact information</p>
+                        </div>
+                        <div class="input__container">
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Job Title</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Job Title"
+                                        id='match_LEADCF35' name='match_LEADCF35' data-bind="value: bind_jobTitle">
+                                </div>
+                                <div>
+                                    <label class="field-label ">First Name</label>
+                                    <input type="text" class="form-field required form-control" placeholder="First Name"
+                                        id='match_First_Name' name="match_First_Name" data-bind="value: bind_fName">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Last Name</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Last Name"
+                                        id='match_Last_Name' name="match_Last_Name" data-bind="value: bind_lName">
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Phone</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Phone"
+                                        id='match_Phone' name="match_Phone" data-bind="value: bind_biz_phone">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Email</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Email"
+                                        id='match_Email' name="match_Email" data-bind="value: bind_biz_email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="buttons">
+                            <a class="prev__btn" onclick="prevForm();">Back</a>
+                            <a class="nxt__btn" id="next_3">Next</a>
+                        </div>
+                    </fieldset>
+                    <fieldset class="active__form" id="form4">
+                        <div class="sub__title__container">
+                            <p>Step 4/5</p>
+                            <h2>Terms and Conditions</h2>
+                            <p>Please read the terms and conditions and approve</p>
+                        </div>
+
+                        <div class="input__container">
+
+
+                            <iframe src="https://payter.us/apply/PZTsAndCs.php" height="420" width="100%">
+                            </iframe>
+
+                            <label class="mt-3" aria-hidden="true">
+                                <input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
+                                    required="" class="w-checkbox-input" tabindex="-1" aria-hidden="true">
+                                <span for="checkbox-2" class="w-form-label" aria-hidden="true">I accept the Terms &
+                                    Conditions and Pricing Plan</span>
+                            </label>
+                            <div class="buttons">
+                                <a class="prev__btn" onclick="prevForm();">Back</a>
+                                <a class="nxt__btn" id="next_4">Next</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="active__form" id="form5">
+                        <div class="sub__title__container">
+                            <p>Step 5/5</p>
+                            <h2>Review and Submit</h2>
+                            <p>Please review important information and click submit</p>
+                        </div>
+                        <div class="input__container">
+                            <h4>Business Information</h4>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Company Name</label> <ion-icon name="create-outline"
+                                        id="edit_Company"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Legal, Registered Company Name" id='Company' name='Company'
+                                        data-bind="value: company">
+                                </div>
+                                <div>
+                                    <label class="field-label ">DBA</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF34"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Doing Business As" id='LEADCF34' name='LEADCF34'
+                                        data-bind="value: dba">
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">EIN/TIN/Tax ID</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF2"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="EIN/TIN/Tax ID" id='LEADCF2' name='LEADCF2' data-bind="value: ein">
+                                </div>
+
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Bank Name</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF13"></ion-icon>
+                                    <input type="text" class="form-field required form-control" id='LEADCF13'
+                                        name='LEADCF13' placeholder="Bank Name" data-bind="value: bank_name">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Routing Number</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF15"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Routing Number" id='LEADCF15' name='LEADCF15'
+                                        data-bind="value: routingNum">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Account Number</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF14"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Account Number" id='LEADCF14' name='LEADCF14'
+                                        data-bind="value: accountNum">
+                                </div>
+                            </div>
+
+                            <h4>Device & Location Information</h4>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label " for='LEADCF51'>Number of Devices</label> <ion-icon
+                                        name="create-outline" id="edit_LEADCF51"></ion-icon>
+                                    <input type='text' class="form-field required form-control" id='LEADCF51'
+                                        name='LEADCF51' placeholder="Number of Devices" data-bind="value: numofdevices"
+                                        maxlength='9'>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Physical Address of Devices <ion-icon name="create-outline"
+                                            id="edit_Street"></ion-icon></label>
+                                    <input type="text" class="form-field requried form-control"
+                                        placeholder="Physical Address of Devices" id='Street' name='Street'
+                                        data-bind="value: biz_street">
+                                </div>
+
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">City</label> <ion-icon name="create-outline"
+                                        id="edit_City"></ion-icon>
+                                    <input type="text" class="form-field required form-control" id='City' name='City'
+                                        data-bind="value: biz_city" placeholder="City">
+                                </div>
+                                <div>
+                                    <label class="field-label">State</label> <ion-icon name="create-outline"
+                                        id="edit_State"></ion-icon>
+                                    <select class='form-field required w-input form-control' id='State' name='State'>
+                                        <option selected hidden>-- Select --</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div>
+
+                                    <label class="field-label">Zip Code</label> <ion-icon name="create-outline"
+                                        id="edit_Zip_Code"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Zip Code" id='Zip_Code' name='Zip Code'
+                                        data-bind="value: biz_zip">
+                                </div>
+                            </div>
+
+                            <h4>Contact Information</h4>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Job Title</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF35"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Job Title"
+                                        data-bind="value: jobTitle" id='LEADCF35' name='LEADCF35'>
+                                </div>
+                                <div>
+                                    <label class="field-label ">First Name</label> <ion-icon name="create-outline"
+                                        id="edit_First_Name"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="First Name"
+                                        data-bind="value: fName" id='First_Name' name='First Name'>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Last Name</label> <ion-icon name="create-outline"
+                                        id="edit_Last_Name"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Last Name"
+                                        data-bind="value: lname" id='Last_Name' name='Last Name'>
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label">Phone</label> <ion-icon name="create-outline"
+                                        id="edit_Phone"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Phone"
+                                        id='Phone' name='Phone' data-bind="value: biz_phone">
+                                </div>
+                                <div>
+                                    <label class="field-label">Email</label> <ion-icon name="create-outline"
+                                        id="edit_Email"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Email"
+                                        id='Email' name='Email' data-bind="value: biz_email">
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class='zcwf_row' hidden>
+                            <label for='LEADCF153'>Pricing<span style='color:red;'>*</span></label>
+                            <div class='zcwf_col_fld'><input type='text' id='LEADCF153' name='LEADCF153'
+                                    maxlength='255' value="Setup $49"></input>
+                            </div>
+                            
+                        </div>
+                        <div class='zcwf_row' hidden>
+                            <div class='zcwf_col_lab' style='font-size:12px; font-family: Arial;'><label
+                                    for='Lead_Source'>Lead
+                                    Source<span style='color:red;'>*</span></label></div>
+                            <div class='zcwf_col_fld'><select class='zcwf_col_fld_slt' id='Lead_Source'
+                                    name='Lead Source'>
+                                    <option value='-None-'>-None-</option>
+                                    <option value='Advertisement'>Advertisement</option>
+                                    <option value='Cold&#x20;Call'>Cold Call</option>
+                                    <option value='Employee&#x20;Referral'>Employee Referral</option>
+                                    <option value='External&#x20;Referral'>External Referral</option>
+                                    <option value='OnlineStore'>OnlineStore</option>
+                                    <option value='Partner'>Partner</option>
+                                    <option value='Public&#x20;Relations'>Public Relations</option>
+                                    <option value='Sales&#x20;Mail&#x20;Alias'>Sales Mail Alias</option>
+                                    <option value='Seminar&#x20;Partner'>Seminar Partner</option>
+                                    <option value='Seminar-Internal'>Seminar-Internal</option>
+                                    <option value='Trade&#x20;Show'>Trade Show</option>
+                                    <option value='Web&#x20;Download'>Web Download</option>
+                                    <option value='Web&#x20;Research'>Web Research</option>
+                                    <option value='Chat'>Chat</option>
+                                    <option value='Online&#x20;Application&#x20;Submission'>Online Application
+                                        Submission
+                                    </option>
+                                    <option value='Incoming&#x20;Phone&#x20;Call'>Incoming Phone Call</option>
+                                    <option value='Email&#x20;From&#x20;Website'>Email From Website</option>
+                                    <option value='Payter Location' selected>Payter Location</option>
+                                </select>
+                                <div class='zcwf_col_help'></div>
+                            </div>
+                        </div>
+                        <div class='zcwf_row' hidden >
+                            <div class='zcwf_col_lab' style='font-size:12px; font-family: Arial;'><label
+                                    for='LEADCF3'>App
+                                    Status<span style='color:red;'>*</span></label></div>
+                            <div class='zcwf_col_fld'><select class='zcwf_col_fld_slt' id='LEADCF3' name='LEADCF3'>
+                                    <option value='-None-'>-None-</option>
+                                    <option value='New' selected>New</option>
+                                    <option value='Queued'>Queued</option>
+                                    <option value='Underwriting'>Underwriting</option>
+                                    <option value='Approved'>Approved</option>
+                                    <option value='Declined'>Declined</option>
+                                    <option value='Out&#x20;for&#x20;Signature'>Out for Signature</option>
+                                </select>
+                                <div class='zcwf_col_help'></div>
+                            </div>
+                        </div>
+                        <div class='zcwf_row' hidden>
+                            <div class='zcwf_col_lab' style='font-size:12px; font-family: Arial;'><label
+                                    for='LEADCF1'>App
+                                    Received<span style='color:red;'>*</span></label></div>
+                            <div class='zcwf_col_fld'><select class='zcwf_col_fld_slt' id='LEADCF1' name='LEADCF1'>
+                                    <option value='-None-'>-None-</option>
+                                    <option value='Payter Location' selected>Payter Location</option>
+                                    <option value='Card&#x20;Only'>Card Only</option>
+                                    <option value='ACH&#x20;Only'>ACH Only</option>
+                                    <option value='Card&#x20;ACH&#x20;Application'>Card ACH Application</option>
+                                    <option value='Virtual&#x20;Check&#x20;Application'>Virtual Check Application
+                                    </option>
+                                </select>
+                                <div class='zcwf_col_help'></div>
+                            </div>
+                        </div>
+                        <div class='buttons' style="text-align: center; justify-content: space-evenly;">
+                            <!-- <input type='reset' class='zcwf_button' name='reset' value='Reset' title='Reset'> -->
+                            <button type='submit' id='formsubmit' class='formsubmit nxt__btn' value='Submit'
+                                title='Submit' style="border-color:#41a8ec">Submit</button>
+                        </div>
+            </div>
+
+            </fieldset>
+
+            <script>
+                // Here's my data model
+                var ViewModel = function (company_obs, dba_obs, ein_obs, bank_obs, route_obs, account_obs, bizstreet_obs, bizcity_obs, bizzip_obs, bizphone_obs, bizemail_obs, jobtitle_obs, fname_obs, lname_obs, num_dev_obs) {
+                    this.bind_company = ko.observable(company_obs);
+                    this.bind_dba = ko.observable(dba_obs);
+                    this.bind_ein = ko.observable(ein_obs);
+                    this.bind_bank_name = ko.observable(bank_obs);
+                    this.bind_routingNum = ko.observable(route_obs);
+                    this.bind_accountNum = ko.observable(account_obs);
+                    this.bind_biz_street = ko.observable(bizstreet_obs);
+                    this.bind_biz_city = ko.observable(bizcity_obs);
+                    this.bind_biz_zip = ko.observable(bizzip_obs);
+                    this.bind_biz_phone = ko.observable(bizphone_obs);
+                    this.bind_biz_email = ko.observable(bizemail_obs);
+                    this.bind_jobTitle = ko.observable(jobtitle_obs);
+                    this.bind_fName = ko.observable(fname_obs);
+                    this.bind_lName = ko.observable(lname_obs);
+                    this.bind_numofdevices = ko.observable(num_dev_obs)
+
+                    this.company = ko.computed(function () {
+                        // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+                        return this.bind_company();
+                    }, this);
+
+                    this.dba = ko.computed(function () {
+                        return this.bind_dba();
+                    }, this);
+
+                    this.ein = ko.computed(function () {
+                        return this.bind_ein();
+                    }, this);
+
+
+                    this.bank_name = ko.computed(function () {
+                        return this.bind_bank_name();
+                    }, this);
+
+                    this.routingNum = ko.computed(function () {
+                        return this.bind_routingNum();
+                    }, this);
+
+                    this.accountNum = ko.computed(function () {
+                        return this.bind_accountNum();
+                    }, this);
+
+
+                    this.biz_street = ko.computed(function () {
+                        return this.bind_biz_street();
+                    }, this);
+
+                    this.biz_city = ko.computed(function () {
+                        return this.bind_biz_city();
+                    }, this);
+
+                    this.biz_zip = ko.computed(function () {
+                        return this.bind_biz_zip();
+                    }, this);
+
+                    this.biz_phone = ko.computed(function () {
+                        return this.bind_biz_phone();
+                    }, this);
+
+                    this.biz_email = ko.computed(function () {
+                        return this.bind_biz_email();
+                    }, this);
+
+                    this.jobTitle = ko.computed(function () {
+                        return this.bind_jobTitle();
+                    }, this);
+
+                    this.fName = ko.computed(function () {
+                        return this.bind_fName();
+                    }, this);
+
+                    this.lname = ko.computed(function () {
+                        return this.bind_lName();
+                    }, this);
+
+                    this.numofdevices = ko.computed(function () {
+                        return this.bind_numofdevices();
+                    }, this);
+
+                };
+
+                ko.applyBindings(new ViewModel("", "", "", "", "", "", "", "", "", "", "", "", "", "", "")); // This makes Knockout get to work
+            </script>
+
+            <script>
+
+                function checkMandatory857022000080738026() {
+                    var mndFileds = new Array('Company', 'First Name', 'Last Name', 'Email', 'Phone', 'Lead Source', 'Lead Status', 'Street', 'City', 'State', 'Zip Code', 'LEADCF1', 'LEADCF3', 'LEADCF2',  'LEADCF51', 'LEADCF35');
+                    var fldLangVal = new Array('Company', 'First\x20Name', 'Last\x20Name', 'Email', 'Phone', 'Lead\x20Source', 'Lead\x20Status', 'Street', 'City', 'State', 'Zip\x20Code', 'App\x20Received', 'App\x20Status', 'EIN\x2FTIN\x2FTax\x20ID', 'Device\x20Count', 'Job\x20Title');
+                    for (i = 0; i < mndFileds.length; i++) {
+                        var fieldObj = document.forms['WebToLeads857022000080738026'][mndFileds[i]];
+                        if (fieldObj) {
+                            if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                                if (fieldObj.type == 'file') {
+                                    alert('Please select a file to upload.');
+                                    fieldObj.focus();
+                                    return false;
+                                }
+                                alert(fldLangVal[i] + ' cannot be empty.');
+                                fieldObj.focus();
+                                return false;
+                            } else if (fieldObj.nodeName == 'SELECT') {
+                                if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                    alert(fldLangVal[i] + ' cannot be none.');
+                                    fieldObj.focus();
+                                    return false;
+                                }
+                            } else if (fieldObj.type == 'checkbox') {
+                                if (fieldObj.checked == false) {
+                                    alert('Please accept  ' + fldLangVal[i]);
+                                    fieldObj.focus();
+                                    return false;
+                                }
+                            }
+                            try {
+                                if (fieldObj.name == 'Last Name') {
+                                    name = fieldObj.value;
+                                }
+                            } catch (e) { }
+                        }
+                    }
+                    var urlparams = new URLSearchParams(window.location.search);
+                    if (urlparams.has('service') && (urlparams.get('service') === 'smarturl')) {
+                        var webform = document.getElementById('webform857022000080738026');
+                        var service = urlparams.get('service');
+                        var smarturlfield = document.createElement('input');
+                        smarturlfield.setAttribute('type', 'hidden');
+                        smarturlfield.setAttribute('value', service);
+                        smarturlfield.setAttribute('name', 'service');
+                        webform.appendChild(smarturlfield);
+                    }
+                    document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+                }
+
+                function tooltipShow857022000080738026(el) {
+                    var tooltip = el.nextElementSibling;
+                    var tooltipDisplay = tooltip.style.display;
+                    if (tooltipDisplay == 'none') {
+                        var allTooltip = document.getElementsByClassName('zcwf_tooltip_over');
+                        for (i = 0; i < allTooltip.length; i++) {
+                            allTooltip[i].style.display = 'none';
+                        }
+                        tooltip.style.display = 'block';
+                    } else {
+                        tooltip.style.display = 'none';
+                    }
+                }
+            </script>
+            <!-- Do not remove this --- Analytics Tracking code starts -->
+            <script id='wf_anal'
+                src='https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=bb9a9911db39b0fdcbe57e4c96954185ad763cfe5ebd4b3af5785752c70285f2c806f9d51d6ee35cd11e5a5a8466a3bfgid898dcfc92231c8ea96bd82d98bdf788a7424c6b13df65bd16bbd732ca90f306cgidb3920aac63b964291c964d11dd477e50474465d6ea96e05e37b7a7c899297b58gidf96686ccde2ff56c1c26793faa49ddd7398b77199ebd66bfc376443dc9f09c48&tw=d7b6eef5ae587cd2fe722660907be9ca92f3da81ac79d2f866da2c0fa1793135'></script>
+            <!-- Do not remove this --- Analytics Tracking code ends. -->
+
+            <!-- Pricing Container --->
+            <div class="pricing__container ml-sm-auto mt-5" >
+                <div class="card card-pricing text-center px-3 mb-4">
+                    <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Pricing
+                        Plan</span>
+                    <div class="bg-transparent card-header pt-4 border-0">
+                        <h4 class="font-weight-normal text-primary text-center mb-0" data-pricing-value="15"
+                            id="price_plan">Flat Rate
+                            3.25 % + 10¢ <span class="h6 text-muted ml-2"></span></h4>
+                    </div>
+                    <div class="card-body pt-0" id="fees_display">
+                        <ul class="list-unstyled mb-4">
+                            <li>Account Registration Fee $49</li>
+                            <li>Activation Per Terminal $9.99</li>
+                            <li>$9 per month without SIM</li>
+                            <li>$14 per month with SIM</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="main.js" type="text/javascript"></script>
+</body>
+
+</html>

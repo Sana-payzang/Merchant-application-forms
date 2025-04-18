@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Responsive Radio Buttons</title>
+    <script>
+        $(document).ready(function () {
+            // Disable copy-paste on confirm fields
+            $('.confirm').on('paste copy', function (e) {
+                e.preventDefault();
+                alert('Copy-paste is disabled on this field. Please type the values manually.');
+            });
+
+            // Form validation on submit
+            $('#bankForm').on('submit', function (e) {
+                e.preventDefault(); // Prevent the form from submitting
+
+                let isValid = true;
+
+                // Get input values
+                const routingNumber = $('#routingNumber').val().trim();
+                const confirmRoutingNumber = $('#confirmRoutingNumber').val().trim();
+                const accountNumber = $('#accountNumber').val().trim();
+                const confirmAccountNumber = $('#confirmAccountNumber').val().trim();
+
+                // Clear previous error messages
+                $('.error-message').text('');
+
+                // Validate Routing Numbers
+                if (routingNumber !== confirmRoutingNumber) {
+                    $('#routingError').text('Routing numbers do not match.');
+                    isValid = false;
+                }
+
+                // Validate Account Numbers
+                if (accountNumber !== confirmAccountNumber) {
+                    $('#accountError').text('Account numbers do not match.');
+                    isValid = false;
+                }
+
+                // Check if form is valid
+                if (isValid) {
+                    alert('Form submitted successfully!');
+                    // Proceed with form submission or further processing here
+                }
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+
+    <form id="bankForm">
+        <div>
+            <label for="routingNumber">Routing Number:</label>
+            <input type="text" id="routingNumber" class="validate" />
+        </div>
+        <div>
+            <label for="confirmRoutingNumber">Confirm Routing Number:</label>
+            <input type="text" id="confirmRoutingNumber" class="confirm" />
+            <span class="error-message" id="routingError"></span>
+        </div>
+        <div>
+            <label for="accountNumber">Account Number:</label>
+            <input type="text" id="accountNumber" class="validate" />
+        </div>
+        <div>
+            <label for="confirmAccountNumber">Confirm Account Number:</label>
+            <input type="text" id="confirmAccountNumber" class="confirm" />
+            <span class="error-message" id="accountError"></span>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+
+</body>
+
+</html>
