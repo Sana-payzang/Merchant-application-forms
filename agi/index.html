@@ -1,0 +1,1573 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Payter Merchant Account Signup Page</title>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet"
+        type="text/css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+        type="text/javascript"></script>
+    <script type='text/javascript' src='knockout.js'></script>
+
+    <script>
+        var form_2 = false;
+
+        $(document).ready(function () {
+            // alert($('ion-icon[name="create-outline"]').attr('id'));
+            $('ion-icon[name="create-outline"]').each(function (index) {
+                var i = $(this).attr('id').replace('edit_', '');
+                $("#" + i).attr("readonly", true);
+                $(this).click(function () {
+                    $("#" + i).removeAttr("readonly");
+                    $("#" + i).focus();
+                });
+                $("#" + i).focusout(function () {
+                    $("#" + i).attr("readonly", true);
+                });
+
+            });
+
+            $(".selection").each(function (index) {
+                $(this).click(function () {
+                });
+            });
+
+            // $("#match_LEADCF4").hide();
+            $("#industry_1").click(function (e) {
+                $("#match_LEADCF4").val("5552 Electric Vehicle Charging");
+                $("#price_plan").text("Flat Rate 3.25% + 10¢");
+
+            });
+            $("#industry_2").click(function (e) {
+                $("#match_LEADCF4").val("5499 Miscellaneous Food Stores-Convenience Stores and Specialty Markets");
+                $("#price_plan").text("Flat Rate 4.25% + 5¢");
+            });
+            $("#industry_3").click(function (e) {
+                $("#match_LEADCF4").val("7542 Car Washes");
+                $("#price_plan").text("Flat Rate 3.25% + 10¢");
+            });
+
+
+
+            // $("#next_1").click(function (e) {
+            //     if (!$("#match_LEADCF4").val()) {
+            //         alert("Please select your industry.");
+            //     } else {
+            //         $("#LEADCF4").val($("#match_LEADCF4").val());
+            //         nextForm();
+            //         $(".pricing__container").removeAttr("hidden");
+            //         $("#LEADCF30").val($("#price_plan").text());
+            //     }
+
+            // });
+            $("#next_1").click(function (e) {
+                var mndFileds = new Array('match_Company', 'match_Email', 'match_Phone', 'match_Website', 'match_Street', 'match_City', 'match_State', 'match_Zip_Code', 'match_LEADCF2', 'match_LEADCF81', 'match_LEADCF5', 'match_LEADCF6', 'match_LEADCF13', 'match_LEADCF14', 'match_LEADCF15','match_LEADCF30');
+                var fldLangVal = new Array('Company Name', 'Email', 'Phone', 'Website', 'Street', 'City', 'State', 'Zip\x20Code', 'EIN\x2FTIN\x2FTax\x20ID', 'Date\x20of\x20Incorporation', 'Business\x20Type', 'Ownership\x20Type', 'Bank\x20Name', 'Bank\x20Account\x20Number', 'Bank\x20Routing\x20Number', 'Pricing\x20Plan');
+                for (i = 0; i < mndFileds.length; i++) {
+                    var fieldObj = document.forms['WebToLeads857022000077249001'][mndFileds[i]];
+                    if (fieldObj) {
+                        if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                            if (fieldObj.type == 'file') {
+                                alert('Please select a file to upload.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                            alert('Please enter ' + fldLangVal[i] + '.');
+                            fieldObj.focus();
+                            return false;
+                        } else if (fieldObj.nodeName == 'SELECT') {
+                            if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                alert('Please select ' + fldLangVal[i] + '.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+
+                $("#State").val($("#match_State").val());
+                $("#LEADCF5").val($("#match_LEADCF5").val());
+                $("#LEADCF6").val($("#match_LEADCF6").val());
+
+                nextForm();
+
+            });
+            $("#next_2").click(function (e) {
+                var mndFileds = new Array('match_First_Name', 'match_Last_Name', 'match_LEADCF11', 'match_LEADCF12', 'match_LEADCF8', 'match_LEADCF7', 'match_Mobile', 'match_Secondary_Email');
+                var fldLangVal = new Array( 'First Name', 'Last Name', 'Street Address', 'City', 'State', 'Zip Code', 'Phone', 'Email');
+                for (i = 0; i < mndFileds.length; i++) {
+                    var fieldObj = document.forms['WebToLeads857022000077249001'][mndFileds[i]];
+                    if (fieldObj) {
+                        if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                            if (fieldObj.type == 'file') {
+                                alert('Please select a file to upload.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                            alert(fldLangVal[i] + ' cannot be empty.');
+                            fieldObj.focus();
+                            return false;
+                        } else if (fieldObj.nodeName == 'SELECT') {
+                            if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                alert(fldLangVal[i] + ' cannot be none.');
+                                fieldObj.focus();
+                                return false;
+                            }
+                        }
+                    }
+
+                }
+
+                $("#LEADCF8").val($("#match_LEADCF8").val());
+                nextForm();
+
+            });
+            $("#next_3").click(function (e) {
+                var mndFileds = new Array('checkbox-2');
+                var fldLangVal = new Array('the Terms & Conditions and Pricing Plan.');
+                for (i = 0; i < mndFileds.length; i++) {
+                    var fieldObj = document.forms['WebToLeads857022000077249001'][mndFileds[i]];
+                    if (fieldObj) {
+                            if (fieldObj.type == 'checkbox') {
+                                if (fieldObj.checked == false) {
+                                    alert('Please accept  ' + fldLangVal[i]);
+                                    fieldObj.focus();
+                                    return false;
+                                }
+                            }
+
+                    }
+                }
+                nextForm();
+            });
+			
+			var $date_inc = jQuery('input[id="match_LEADCF81"]');
+            var $d_o_b = jQuery('input[id="match_LEADCF82"]');
+
+            $date_inc.bind('keyup', 'keydown', function (e) {
+                //To accomdate for backspacing, we detect which key was pressed - if backspace, do nothing:
+                if (e.which !== 8) {
+                    var numChars = $date_inc.val().length;
+                    if (numChars === 2 || numChars === 5) {
+                        var thisVal = $date_inc.val();
+                        thisVal += '/';
+                        $date_inc.val(thisVal);
+                    }
+                }
+            });
+
+            $d_o_b.bind('keyup', 'keydown', function (e) {
+                //To accomdate for backspacing, we detect which key was pressed - if backspace, do nothing:
+                if (e.which !== 8) {
+                    var numChars = $d_o_b.val().length;
+                    if (numChars === 2 || numChars === 5) {
+                        var thisVal = $d_o_b.val();
+                        thisVal += '/';
+                        $d_o_b.val(thisVal);
+                    }
+                }
+            });
+        });
+
+
+    </script>
+</head>
+
+<body>
+
+    <div class="form__container container-fluid px-5">
+
+        <div class="title__container">
+            <img src="agi_logo.png" >
+
+        </div>
+        <div class="body__container">
+            <div class="left__container ">
+                <div class="side__titles">
+                    <div class="title__name">
+                        <h3>Business Information</h3>
+                        <p>ㅤ</p>
+                    </div>
+
+                    <div class="title__name">
+                        <h3>Personal Information</h3>
+                        <p>ㅤ</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Terms & Conditions</h3>
+                        <p>ㅤ</p>
+                    </div>
+                    <div class="title__name">
+                        <h3>Review & Submit</h3>
+                        <p>ㅤ</p>
+                    </div>
+                </div>
+                <div class="progress__bar__container">
+                    <ul>
+                        <li class="active" id="icon2"><ion-icon name="book-outline"></ion-icon></li>
+                        <li id="icon3"><ion-icon name="layers-outline"></ion-icon></li>
+                        <li id="icon4"><ion-icon name="pricetag-outline"></ion-icon></li>
+                        <li id="icon5"><ion-icon name="mail-outline"></ion-icon></li>
+                    </ul>
+                </div>
+            </div>
+            <div id='crmWebToEntityForm' class="right__container align-items-center">
+
+                <!-- Note :
+   - You can modify the font style and form style to suit your website. 
+   - Code lines with comments Do not remove this code are required for the form to work properly, make sure that you do not remove these lines of code. 
+   - The Mandatory check script can modified as to suit your business needs. 
+   - It is important that you test the modified form before going live.-->
+                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                <META HTTP-EQUIV='content-type' CONTENT='text/html;charset=UTF-8'>
+                <form action='https://crm.zoho.com/crm/WebToLeadForm' name=WebToLeads857022000077249001 method='POST'
+                    onSubmit='javascript:document.charset="UTF-8"; return checkMandatory857022000077249001()'
+                    accept-charset='UTF-8'>
+                    <input type='text' style='display:none;' name='xnQsjsdp'
+                        value='23c8431dcce82e4a70acb7855e168c61203ffdb39c8f9f415c7c203728b79e17'></input>
+                    <input type='hidden' name='zc_gad' id='zc_gad' value=''></input>
+                    <input type='text' style='display:none;' name='xmIwtLD'
+                        value='ce0d3c4c8f3d9973b5c3fdc681a39d8aeea3efcfd53c93f7694f9070f75b3851380a13ccb471cc9591adbc1d614dc51d'></input>
+                    <input type='text' style='display:none;' name='actionType' value='TGVhZHM='></input>
+                    <input type='text' style='display:none;' name='returnURL'
+                        value='https://payter.us/apply/submission.html'> </input>
+
+                    
+                    <fieldset id="form1">
+                        <div class="sub__title__container">
+                            <p>Step 1/4</p>
+                            <h2>Business Information</h2>
+                            <p>Provide business information</p>
+                        </div>
+
+                        <div class="input__container">
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Company Name</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Legal, Registered Company Name" id='match_Company'
+                                        name="match_Company" data-bind="value: bind_company">
+                                </div>
+                                <div>
+                                    <label class="field-label ">DBA</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Doing Business As" id='match_LEADCF34' name="match_LEADCF34"
+                                        data-bind="value: bind_dba">
+                                </div>
+                            </div>
+
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">EIN/TIN/Tax ID</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="EIN/TIN/Tax ID" id='match_LEADCF2' name="match_LEADCF2"
+                                        data-bind="value: bind_ein">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Date of Incorporation</label>
+                                    <input type="text" class="form-field required form-control" placeholder="MM/DD/YYYY"
+                                        id='match_LEADCF81' name="match_LEADCF81 " data-bind="value: bind_inc" minlength="10" maxlength="10">
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Business Type</label>
+                                    <select class='form-field required w-input form-control' id='match_LEADCF5'
+                                        name="match_LEADCF5">
+                                        <option selected hidden value="-None-">-- Select --</option>
+                                        <option value='Corporation'>Corporation</option>
+                                        <option value='Individual&#x20;Sole&#x20;Proprietorship'>Individual Sole
+                                            Proprietorship</option>
+                                        <option value='Limited&#x20;Liability&#x20;Company'>Limited Liability Company
+                                        </option>
+                                        <option value='Partnership'>Partnership</option>
+                                        <option value='Tax&#x20;Exempt&#x20;Organization'>Tax Exempt Organization
+                                        </option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Ownership Type</label>
+                                    <select class='form-field required w-input form-control' id='match_LEADCF6'
+                                        name="match_LEADCF6">
+                                        <option selected hidden value="-None-">-- Select --</option>
+                                        <option>Private</option>
+                                        <option>Public</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Bank Name</label>
+                                    <input type="text" class="form-field required form-control" id='match_LEADCF13'
+                                        name="match_LEADCF13" placeholder="Bank Name" data-bind="value: bind_bank_name">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Routing Number</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Routing Number" id='match_LEADCF15' name="match_LEADCF15"
+                                        data-bind="value: bind_routingNum">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Account Number</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Account Number" id='match_LEADCF14' name="match_LEADCF14"
+                                        data-bind="value: bind_accountNum">
+                                </div>
+                            </div>
+
+                            
+
+                            <label class="field-label ">Business Street Address</label>
+                            <input type="text" class="form-field requried form-control"
+                                placeholder="Business Street Address" id='match_Street' name="match_Street"
+                                data-bind="value: bind_biz_street">
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Business City</label>
+                                    <input type="text" class="form-field required form-control" id='match_City'
+                                        name="match_City" placeholder="Business City" data-bind="value: bind_biz_city">
+                                </div>
+                                <div>
+                                    <label class="field-label">Business State</label>
+                                    <select class='form-field required w-input form-control' id='match_State'
+                                        name="match_State">
+                                        <option selected hidden value="-None-">-- Select --</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div>
+
+                                    <label class="field-label">Business Zip Code</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Business Zip Code" id='match_Zip_Code' name="match_Zip_Code"
+                                        data-bind="value: bind_biz_zip">
+                                </div>
+                            </div>
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label">Business Phone</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Business Phone" id='match_Phone' name="match_Phone"
+                                        data-bind="value: bind_biz_phone">
+                                </div>
+                                <div>
+                                    <label class="field-label">Business Email</label>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Business Email" id='match_Email' name="match_Email"
+                                        data-bind="value: bind_biz_email">
+                                </div>
+                            </div>
+
+                            <label class="field-label">Business Website</label>
+                            <input type="text" class="form-field required form-control" id='match_Website'
+                                name="match_Website" placeholder="Business Website" data-bind="value: bind_biz_web">
+
+
+
+
+
+                            <div class="buttons">
+                                
+                                <a class="nxt__btn" id="next_1">Next</a>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="active__form" id="form2">
+                        <div class="sub__title__container">
+                            <p>Step 3/5</p>
+                            <h2>Personal Information</h2>
+                            <p>Please provide your or authorized personal information</p>
+                        </div>
+
+                        <div class="input__container">
+                            <div class="flex-container">
+                                
+                                <div>
+                                    <label class="field-label ">First Name</label>
+                                    <input type="text" class="form-field required form-control" placeholder="First Name"
+                                        id='match_First_Name' name="match_First_Name" data-bind="value: bind_fName">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Last Name</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Last Name"
+                                        id='match_Last_Name' name="match_Last_Name" data-bind="value: bind_lName">
+                                </div>
+                            </div>
+                            <label class="field-label ">Street Address</label>
+                            <input type="text" class="form-field required form-control" placeholder="Street Address"
+                                id='match_LEADCF11' name="match_LEADCF11" data-bind="value: bind_pers_street">
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">City</label>
+                                    <input type="text" class="form-field required form-control" placeholder="City"
+                                        id='match_LEADCF12' name="match_LEADCF12" data-bind="value: bind_pers_city">
+                                </div>
+                                <div>
+                                    <label class="field-label ">State</label>
+                                    <select class='form-field required w-input form-control' id='match_LEADCF8'
+                                        name="match_LEADCF8">
+                                        <option selected hidden>-- Select --</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Zip Code</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Zip Code"
+                                        id='match_LEADCF7' name='match_LEADCF7' data-bind="value: bind_pers_zip">
+                                </div>
+                            </div>
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Phone</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Phone"
+                                        id='match_Mobile' name="match_Mobile" data-bind="value: bind_mobile">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Email</label>
+                                    <input type="text" class="form-field required form-control" placeholder="Email"
+                                        id='match_Secondary_Email' name="match_Secondary_Email"
+                                        data-bind="value: bind_pers_email">
+                                </div>
+                            </div>
+
+                            
+
+                            <div class="buttons">
+                                <a class="prev__btn" onclick="prevForm();">Back</a>
+                                <a class="nxt__btn" id="next_2">Next</a>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset class="active__form" id="form3">
+                        <div class="sub__title__container">
+                            <p>Step 4/5</p>
+                            <h2>Terms and Conditions</h2>
+                            <p>Please read the terms and conditions and approve</p>
+                        </div>
+
+                        <div class="input__container">
+
+
+                            <iframe src="https://payter.us/apply/PZTsAndCs.php" height="420" width="100%">
+                            </iframe>
+
+                            <label class="mt-3" aria-hidden="true">
+                                <input type="checkbox" id="checkbox-2" name="checkbox-2" data-name="Checkbox 2"
+                                    required="" class="w-checkbox-input" tabindex="-1" aria-hidden="true">
+                                <span for="checkbox-2" class="w-form-label" aria-hidden="true">I accept the Terms &
+                                    Conditions and Pricing Plan</span>
+                            </label>
+                            <div class="buttons">
+                                <a class="prev__btn" onclick="prevForm();">Back</a>
+                                <a class="nxt__btn" id="next_3">Next</a>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="active__form" id="form4">
+
+
+                        <div class="sub__title__container">
+                            <p>Step 5/5</p>
+                            <h2>Review and Submit</h2>
+                            <p>Please review important information and click submit</p>
+                        </div>
+
+                        <div class="input__container">
+
+                            <!-- ZOHO FORM FIELDS START -->
+
+                            <h4>Business Information</h4>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Company Name</label> <ion-icon name="create-outline"
+                                        id="edit_Company"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Legal, Registered Company Name" id='Company' name='Company'
+                                        data-bind="value: company">
+                                </div>
+                                <div>
+                                    <label class="field-label ">DBA</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF34"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Doing Business As" id='LEADCF34' name='LEADCF34'
+                                        data-bind="value: dba">
+                                </div>
+                            </div>
+
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">EIN/TIN/Tax ID</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF2"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="EIN/TIN/Tax ID" id='LEADCF2' name='LEADCF2' data-bind="value: ein">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Date of Incorporation</label> <ion-icon
+                                        name="create-outline" id="edit_LEADCF81"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="MM/DD/YYYY"
+                                        id='LEADCF81' name='LEADCF81' data-bind="value: inc">
+                                </div>
+                            </div>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Business Type</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF5"></ion-icon>
+                                    <select class='form-field required w-input form-control' id='LEADCF5'
+                                        name='LEADCF5'>
+                                        <option selected hidden>-- Select --</option>
+                                        <option value='Corporation'>Corporation</option>
+                                        <option value='Individual&#x20;Sole&#x20;Proprietorship'>Individual Sole
+                                            Proprietorship</option>
+                                        <option value='Limited&#x20;Liability&#x20;Company'>Limited Liability Company
+                                        </option>
+                                        <option value='Partnership'>Partnership</option>
+                                        <option value='Tax&#x20;Exempt&#x20;Organization'>Tax Exempt Organization
+                                        </option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Ownership Type</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF6"></ion-icon>
+                                    <select class='form-field required w-input form-control' id='LEADCF6'
+                                        name='LEADCF6'>
+                                        <option selected hidden>-- Select --</option>
+                                        <option>Private</option>
+                                        <option>Public</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Bank Name</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF13"></ion-icon>
+                                    <input type="text" class="form-field required form-control" id='LEADCF13'
+                                        name='LEADCF13' placeholder="Bank Name" data-bind="value: bank_name">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Routing Number</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF15"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Routing Number" id='LEADCF15' name='LEADCF15'
+                                        data-bind="value: routingNum">
+                                </div>
+                                <div>
+                                    <label class="field-label ">Account Number</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF14"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Account Number" id='LEADCF14' name='LEADCF14'
+                                        data-bind="value: accountNum">
+                                </div>
+                            </div>
+
+
+                            <label class="field-label ">Business Street Address <ion-icon name="create-outline"
+                                    id="edit_Street"></ion-icon></label>
+                            <input type="text" class="form-field requried form-control"
+                                placeholder="Business Street Address" id='Street' name='Street'
+                                data-bind="value: biz_street">
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Business City</label> <ion-icon name="create-outline"
+                                        id="edit_City"></ion-icon>
+                                    <input type="text" class="form-field required form-control" id='City' name='City'
+                                        data-bind="value: biz_city" placeholder="Business City">
+                                </div>
+                                <div>
+                                    <label class="field-label">Business State</label> <ion-icon name="create-outline"
+                                        id="edit_State"></ion-icon>
+                                    <select class='form-field required w-input form-control' id='State' name='State'>
+                                        <option selected hidden>-- Select --</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div>
+
+                                    <label class="field-label">Business Zip Code</label> <ion-icon name="create-outline"
+                                        id="edit_Zip_Code"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Business Zip Code" id='Zip_Code' name='Zip Code'
+                                        data-bind="value: biz_zip">
+                                </div>
+                            </div>
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label">Business Phone</label> <ion-icon name="create-outline"
+                                        id="edit_Phone"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Business Phone" id='Phone' name='Phone'
+                                        data-bind="value: biz_phone">
+                                </div>
+                                <div>
+                                    <label class="field-label">Business Email</label> <ion-icon name="create-outline"
+                                        id="edit_Email"></ion-icon>
+                                    <input type="text" class="form-field required form-control"
+                                        placeholder="Business Email" id='Email' name='Email'
+                                        data-bind="value: biz_email">
+                                </div>
+                            </div>
+
+                            <label class="field-label">Business Website <ion-icon name="create-outline"
+                                    id="edit_Website"></ion-icon></label>
+                            <input type="text" class="form-field required form-control" id='Website' name='Website'
+                                data-bind="value: biz_web" placeholder="Business Website">
+                            <hr>
+
+                            <h4>Personal Information</h4>
+                            <div class="flex-container">
+                                
+                                <div>
+                                    <label class="field-label ">First Name</label> <ion-icon name="create-outline"
+                                        id="edit_First_Name"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="First Name"
+                                        data-bind="value: fName" id='First_Name' name='First Name'>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Last Name</label> <ion-icon name="create-outline"
+                                        id="edit_Last_Name"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Last Name"
+                                        data-bind="value: lname" id='Last_Name' name='Last Name'>
+                                </div>
+                            </div>
+                            <label class="field-label ">Street Address <ion-icon name="create-outline"
+                                    id="edit_LEADCF11"></ion-icon></label>
+                            <input type="text" class="form-field required form-control" placeholder="Street Address"
+                                data-bind="value: pers_street" id='LEADCF11' name='LEADCF11'>
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">City</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF12"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="City"
+                                        data-bind="value: pers_city" id='LEADCF12' name='LEADCF12'>
+                                </div>
+                                <div>
+                                    <label class="field-label ">State</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF8"></ion-icon>
+                                    <select class='form-field required w-input form-control' id='LEADCF8'
+                                        name='LEADCF8'>
+                                        <option selected hidden>-- Select --</option>
+                                        <option value="AL">Alabama</option>
+                                        <option value="AK">Alaska</option>
+                                        <option value="AZ">Arizona</option>
+                                        <option value="AR">Arkansas</option>
+                                        <option value="CA">California</option>
+                                        <option value="CO">Colorado</option>
+                                        <option value="CT">Connecticut</option>
+                                        <option value="DE">Delaware</option>
+                                        <option value="DC">District Of Columbia</option>
+                                        <option value="FL">Florida</option>
+                                        <option value="GA">Georgia</option>
+                                        <option value="HI">Hawaii</option>
+                                        <option value="ID">Idaho</option>
+                                        <option value="IL">Illinois</option>
+                                        <option value="IN">Indiana</option>
+                                        <option value="IA">Iowa</option>
+                                        <option value="KS">Kansas</option>
+                                        <option value="KY">Kentucky</option>
+                                        <option value="LA">Louisiana</option>
+                                        <option value="ME">Maine</option>
+                                        <option value="MD">Maryland</option>
+                                        <option value="MA">Massachusetts</option>
+                                        <option value="MI">Michigan</option>
+                                        <option value="MN">Minnesota</option>
+                                        <option value="MS">Mississippi</option>
+                                        <option value="MO">Missouri</option>
+                                        <option value="MT">Montana</option>
+                                        <option value="NE">Nebraska</option>
+                                        <option value="NV">Nevada</option>
+                                        <option value="NH">New Hampshire</option>
+                                        <option value="NJ">New Jersey</option>
+                                        <option value="NM">New Mexico</option>
+                                        <option value="NY">New York</option>
+                                        <option value="NC">North Carolina</option>
+                                        <option value="ND">North Dakota</option>
+                                        <option value="OH">Ohio</option>
+                                        <option value="OK">Oklahoma</option>
+                                        <option value="OR">Oregon</option>
+                                        <option value="PA">Pennsylvania</option>
+                                        <option value="RI">Rhode Island</option>
+                                        <option value="SC">South Carolina</option>
+                                        <option value="SD">South Dakota</option>
+                                        <option value="TN">Tennessee</option>
+                                        <option value="TX">Texas</option>
+                                        <option value="UT">Utah</option>
+                                        <option value="VT">Vermont</option>
+                                        <option value="VA">Virginia</option>
+                                        <option value="WA">Washington</option>
+                                        <option value="WV">West Virginia</option>
+                                        <option value="WI">Wisconsin</option>
+                                        <option value="WY">Wyoming</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Zip Code</label> <ion-icon name="create-outline"
+                                        id="edit_LEADCF7"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Zip Code"
+                                        data-bind="value: pers_zip" id='LEADCF7' name='LEADCF7'>
+                                </div>
+                            </div>
+
+                            <div class="flex-container">
+                                <div>
+                                    <label class="field-label ">Phone</label> <ion-icon name="create-outline"
+                                        id="edit_Mobile"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Phone"
+                                        data-bind="value: mobile" id='Mobile' name='Mobile'>
+                                </div>
+                                <div>
+                                    <label class="field-label ">Email</label> <ion-icon name="create-outline"
+                                        id="edit_Secondary_Email"></ion-icon>
+                                    <input type="text" class="form-field required form-control" placeholder="Email"
+                                        data-bind="value: pers_email" id='Secondary_Email' name='Secondary Email'>
+                                </div>
+                            </div>
+
+                            
+
+                            <!-- ZOHO FORM FIELDS END -->
+
+
+                            <div hidden>
+                                <label for='LEADCF1'>App Received<span style='color:red;'>*</span></label><select
+                                    class='zcwf_col_fld_slt' id='LEADCF1' name='LEADCF1'>
+                                    <option value='-None-'>-None-</option>
+                                    <option value='None'>None</option>
+                                    <option value='Card&#x20;Only'>Card Only</option>
+                                    <option value='ACH&#x20;Only'>ACH Only</option>
+                                    <option value='Card&#x20;ACH&#x20;Application'>Card ACH Application</option>
+                                    <option value='Payter' selected>Payter</option>
+                                </select>
+                                <label for='LEADCF3'>App Status<span style='color:red;'>*</span></label><select
+                                    class='zcwf_col_fld_slt' id='LEADCF3' name='LEADCF3'>
+                                    <option value='-None-'>-None-</option>
+                                    <option value='New' selected>New</option>
+                                    <option value='Queued'>Queued</option>
+                                    <option value='Underwriting'>Underwriting</option>
+                                    <option value='Approved'>Approved</option>
+                                    <option value='Declined'>Declined</option>
+                                </select>
+                                <label for='Lead_Source'>Lead
+                                    Source<span style='color:red;'>*</span></label><select class='zcwf_col_fld_slt'
+                                    id='Lead_Source' name='Lead Source'>
+                                    <option value='-None-'>-None-</option>
+                                    <option value='Advertisement'>Advertisement</option>
+                                    <option value='Cold&#x20;Call'>Cold Call</option>
+                                    <option value='Employee&#x20;Referral'>Employee Referral</option>
+                                    <option value='External&#x20;Referral'>External Referral</option>
+                                    <option value='OnlineStore'>OnlineStore</option>
+                                    <option value='Partner'>Partner</option>
+                                    <option value='Public&#x20;Relations'>Public Relations</option>
+                                    <option value='Sales&#x20;Mail&#x20;Alias'>Sales Mail Alias</option>
+                                    <option value='Seminar&#x20;Partner'>Seminar Partner</option>
+                                    <option value='Seminar-Internal'>Seminar-Internal</option>
+                                    <option value='Trade&#x20;Show'>Trade Show</option>
+                                    <option value='Web&#x20;Download'>Web Download</option>
+                                    <option value='Web&#x20;Research'>Web Research</option>
+                                    <option value='Chat'>Chat</option>
+                                    <option value='Online&#x20;Application&#x20;Submission'>Online Application
+                                        Submission
+                                    </option>
+                                    <option value='Incoming&#x20;Phone&#x20;Call'>Incoming Phone Call</option>
+                                    <option value='Email&#x20;From&#x20;Website'>Email From Website</option>
+                                    <option value='Payter AGI FBO Location' selected>Payter AGI FBO Location</option>
+                                </select>
+                                <input type='text' id='LEADCF4' name='LEADCF4' maxlength='255' list="mcCodes"
+                                    class="form-field required form-control" placeholder="Search..." value="5552 Electric Vehicle Charging">
+                                <datalist id="mcCodes">
+                                    <option>742 Veterinary Services</option>
+                                    <option>763 Agricultural Cooperatives</option>
+                                    <option>780 Landscaping and Horticultural Services</option>
+                                    <option>1520 General Contractor/Residential Building; Roof, Siding, and
+                                        Sheet
+                                        Metal Work Contractors</option>
+                                    <option>1711 Heating, Plumbing, and Air Conditioning Contractors</option>
+                                    <option>1731 Electrical Contractors</option>
+                                    <option>1740 Masonry, Stonework, Tile Setting, Plastering and Insulation
+                                        Contractors</option>
+                                    <option>1750 Carpentry Contractors</option>
+                                    <option>1761 Roofing, Siding, and Sheet Metal Work Contractors</option>
+                                    <option>1771 Concrete Work Contractors</option>
+                                    <option>1799 Special Trade Contractors (Not Elsewhere Classified)</option>
+                                    <option>2741 Miscellaneous Publishing and Printing Services</option>
+                                    <option>2791 Typesetting, Plate Making and Related Services</option>
+                                    <option>2842 Specialty Cleaning, Polishing and Sanitation Preparations
+                                    </option>
+                                    <option>4011 Railroads - Freight</option>
+                                    <option>4111 Local and Suburban Commuter Passenger Transportation</option>
+                                    <option>4112 Passenger Railways</option>
+                                    <option>4119 Ambulance Services</option>
+                                    <option>4121 Taxicabs and Limousines</option>
+                                    <option>4131 Bus Lines</option>
+                                    <option>4214 Motor Freight Carriers and Trucking-Local and Long Distance,
+                                        Moving
+                                        & Storage Companies, and Local Delivery</option>
+                                    <option>4215 Courier Services – Air and Ground, and Freight Forwarders
+                                    </option>
+                                    <option>4225 Public Warehousing and Storage – Farm Products, Refrigerated
+                                        Goods,
+                                        Household Goods, and Storage</option>
+                                    <option>4457 Boat Rentals and Leasing</option>
+                                    <option>4468 Marinas, Marine Service, and Supplies</option>
+                                    <option>4582 Airports, Flying Fields, and Airport Terminals</option>
+                                    <option>4784 Tolls and Bridge Fees</option>
+                                    <option>4789 Transportation Services (Not Elsewhere Classified)</option>
+                                    <option>4812 Telecommunication Equipment and Telephone Sales</option>
+                                    <option>4814 Telecommunication services</option>
+                                    <option>4816 Computer Network / Information Services</option>
+                                    <option>4821 Telegraph Services</option>
+                                    <option>4899 Cable, Satellite, and Other Pay Television; Radio Services
+                                    </option>
+                                    <option>4900 Electric, Gas, Water, and Sanitary</option>
+                                    <option>5013 Motor Vehicle Supplies and New Parts</option>
+                                    <option>5021 Office and Commercial Furniture</option>
+                                    <option>5039 Construction Materials (Not Elsewhere Classified)</option>
+                                    <option>5044 Photographic, Photocopy, Microfilm Equipment and Supplies
+                                    </option>
+                                    <option>5045 Computers, Computer Peripheral Equipment, and Software</option>
+                                    <option>5046 Commercial Equipment (Not Elsewhere Classified)</option>
+                                    <option>5047 Dental/Laboratory/Medical/Ophthalmic Hospital Equipment and
+                                        Supplies</option>
+                                    <option>5051 Metal Service Centers and Offices</option>
+                                    <option>5065 Electrical Parts and Equipment</option>
+                                    <option>5072 Hardware, Equipment and Supplies</option>
+                                    <option>5074 Plumbing and Heating Equipment and Supplies</option>
+                                    <option>5085 Industrial Supplies (Not Elsewhere Classified)</option>
+                                    <option>5094 Precious Stones, Metals, Watches and Jewelry</option>
+                                    <option>5099 Durable goods - Not Elsewhere Classified</option>
+                                    <option>5111 Stationery, Office Supplies, Printing and Writing Paper
+                                    </option>
+                                    <option>5122 Drugs, Drug Proprietors and Druggists Sundries</option>
+                                    <option>5131 Piece Goods, Notions, and Other Dry Goods</option>
+                                    <option>5137 Men’s, Women’s, and Children’s Uniforms and Commercial Clothing
+                                    </option>
+                                    <option>5139 Commercial Footwear</option>
+                                    <option>5169 Chemicals and Allied Products (Not Elsewhere Classified)
+                                    </option>
+                                    <option>5172 Petroleum & Petroleum Products - Wholesale Distributors
+                                    </option>
+                                    <option>5192 Books, Periodicals, and Newspapers Distributors</option>
+                                    <option>5193 Florist Suppliers, Nursery Stock & Flowers</option>
+                                    <option>5198 Paints, Varnishes and Supplies</option>
+                                    <option>5199 Non-durable Goods (Not Elsewhere Classified)</option>
+                                    <option>5200 Home Supply Warehouse Stores</option>
+                                    <option>5211 Lumber and Building Materials Stores</option>
+                                    <option>5231 Glass, Paint, and Wallpaper Stores</option>
+                                    <option>5251 Hardware Stores</option>
+                                    <option>5261 Nurseries and Lawn and Garden Supply Stores</option>
+                                    <option>5271 Mobile Home Dealers</option>
+                                    <option>5300 Wholesale Clubs</option>
+                                    <option>5309 Duty Free Stores</option>
+                                    <option>5310 Discount Stores</option>
+                                    <option>5311 Department Stores</option>
+                                    <option>5331 Variety Stores</option>
+                                    <option>5399 Miscellaneous General Merchandise</option>
+                                    <option>5411 Grocery Stores and Supermarkets</option>
+                                    <option>5422 Freezer and Locker Meat Provisioners</option>
+                                    <option>5441 Candy, Nut, and Confectionery Stores</option>
+                                    <option>5451 Dairy Products Stores</option>
+                                    <option>5462 Bakeries</option>
+                                    <option>5499 Miscellaneous Food Stores-Convenience Stores and Specialty
+                                        Markets
+                                    </option>
+                                    <option>5511 Car and Truck Dealers (New and Used) Sales, Service, Repairs,
+                                        Parts, and Leasing</option>
+                                    <option>5521 Car and Truck Dealers (Used Only) Sales, Service, Repairs,
+                                        Parts,
+                                        and Leasing</option>
+                                    <option>5531 Auto / Home Supply</option>
+                                    <option>5532 Automotive Tire Stores</option>
+                                    <option>5533 Automotive Parts and Accessories Stores</option>
+                                    <option>5541 Service Stations (With or without Ancillary Services)</option>
+                                    <option>5542 Automated Fuel Dispensers</option>
+                                    <option>5551 Boat Dealers</option>
+                                    <option>5552 Electric Vehicle Charging</option>
+                                    <option>5561 Camper, Recreational and Utility Trailer Dealers</option>
+                                    <option>5571 Motorcycle Shops and Dealers</option>
+                                    <option>5592 Motor Homes Dealers</option>
+                                    <option>5598 Snowmobile Dealers</option>
+                                    <option>5599 Miscellaneous Automotive, Aircraft, and Farm Equipment Dealers
+                                        (Not
+                                        Elsewhere Classified)</option>
+                                    <option>5611 Men’s and Boys’ Clothing and Accessories Stores</option>
+                                    <option>5621 Women’s Ready-To-Wear Stores</option>
+                                    <option>5631 Women’s Accessory and Specialty Shops</option>
+                                    <option>5641 Children’s and Infants’ Wear Stores</option>
+                                    <option>5651 Family Clothing Stores</option>
+                                    <option>5655 Sports and Riding Apparel Stores</option>
+                                    <option>5661 Shoe Stores</option>
+                                    <option>5681 Furriers and Fur Shops</option>
+                                    <option>5691 Men's and Women's Clothing Stores; Tailors, Seamstresses,
+                                        Mending,
+                                        and Alterations</option>
+                                    <option>5697 Tailors, Seamstresses, Mending, and Alterations</option>
+                                    <option>5698 Wig and Toupee Stores</option>
+                                    <option>5699 Miscellaneous Apparel and Accessory Shops</option>
+                                    <option>5712 Furniture, Home Furnishings, and Equipment Stores, except
+                                        Appliances</option>
+                                    <option>5713 Floor Covering Stores</option>
+                                    <option>5714 Drapery, Window Covering, and Upholstery Stores</option>
+                                    <option>5718 Fireplace, Fireplace Screens and Accessories Stores</option>
+                                    <option>5719 Miscellaneous Home Furnishing Specialty Stores</option>
+                                    <option>5722 Household Appliance Stores</option>
+                                    <option>5732 Electronics Stores</option>
+                                    <option>5733 Music Stores - Musical Instruments, Pianos, and Sheet Music
+                                    </option>
+                                    <option>5734 Computer Software Stores</option>
+                                    <option>5735 Record Stores</option>
+                                    <option>5811 Caterers - Prepare & Delivery</option>
+                                    <option>5812 Eating Places and Restaurants</option>
+                                    <option>5813 Drinking Places (Alcoholic Beverages) - Bars, Taverns,
+                                        Nightclubs,
+                                        Cocktail Lounges, and Discotheques</option>
+                                    <option>5814 Quick Payment Service - Fast Food Restaurants</option>
+                                    <option>5815 Digital Goods Media – Books, Movies, Music</option>
+                                    <option>5816 Digital Goods – Games</option>
+                                    <option>5817 Digital Goods – Applications (Excludes Games)</option>
+                                    <option>5818 Digital Goods – Large Digital Goods Merchant</option>
+                                    <option>5912 Drug Stores and Pharmacies</option>
+                                    <option>5921 Package Stores–Beer, Wine and Liquor</option>
+                                    <option>5931 Used Merchandise and Secondhand Stores</option>
+                                    <option>5932 Antique Shops – Sales, Repairs, and Restoration Services
+                                    </option>
+                                    <option>5935 Wrecking and Salvage Yards</option>
+                                    <option>5937 Antique Reproductions</option>
+                                    <option>5940 Bicycle Shops – Sales and Service</option>
+                                    <option>5941 Sporting Goods Stores</option>
+                                    <option>5942 Book Stores</option>
+                                    <option>5943 School Supply Stores</option>
+                                    <option>5944 Jewelry, Watch, Clock, and Silverware Stores</option>
+                                    <option>5945 Hobby, Toy, and Game Stores</option>
+                                    <option>5946 Camera and Photographic Supply Stores</option>
+                                    <option>5947 Gift, Card, Novelty and Souvenir Shops</option>
+                                    <option>5948 Luggage and Leather Goods Stores</option>
+                                    <option>5949 Sewing, Needlework, Fabric and Piece Goods Stores</option>
+                                    <option>5950 Glassware/Crystal Stores</option>
+                                    <option>5960 Insurance Services</option>
+                                    <option>5964 Catalog Merchant</option>
+                                    <option>5969 Direct Marketing – Other Direct Marketers (Not Elsewhere
+                                        Classified)</option>
+                                    <option>5970 Artist Supply and Craft Stores</option>
+                                    <option>5971 Art Dealers and Galleries</option>
+                                    <option>5972 Stamp and Coin Stores</option>
+                                    <option>5973 Religious Goods Stores</option>
+                                    <option>5975 Hearing Aids – Sales, Service, and Supply</option>
+                                    <option>5976 Orthopedic Goods – Prosthetic Devices</option>
+                                    <option>5977 Cosmetic Stores</option>
+                                    <option>5978 Typewriter Stores – Sales, Rentals, and Service</option>
+                                    <option>5983 Fuel Dealers – Fuel Oil, Wood, Coal, and Liquefied Petroleum
+                                    </option>
+                                    <option>5992 Florists</option>
+                                    <option>5993 Cigar Stores and Stands</option>
+                                    <option>5994 News Dealers and Newsstands</option>
+                                    <option>5995 Pet Shops, Pet Foods and Supplies Stores</option>
+                                    <option>5996 Swimming Pools – Sales and Service</option>
+                                    <option>5997 Electric Razor Stores – Sales and Service</option>
+                                    <option>5998 Tent and Awning Shops</option>
+                                    <option>5999 Miscellaneous & Specialty Retail Stores</option>
+                                    <option>6300 Insurance Sales, Underwriting, and Premiums</option>
+                                    <option>6513 Real Estate Agents and Managers – Rentals</option>
+                                    <option>7011 Lodging–Hotels, Motels, Resorts–not elsewhere classified
+                                    </option>
+                                    <option>7032 Sporting and Recreational Camps</option>
+                                    <option>7033 Trailer Parks and Campgrounds</option>
+                                    <option>7210 Laundry, Cleaning, and Garment Services</option>
+                                    <option>7211 Laundries – Family and Commercial</option>
+                                    <option>7216 Dry Cleaners</option>
+                                    <option>7217 Carpet and Upholstery Cleaning</option>
+                                    <option>7221 Photographic Studios</option>
+                                    <option>7230 Beauty and Barber Shops</option>
+                                    <option>7251 Shoe Repair Shops, Shoe Shine Parlors, and Hat Cleaning Shops
+                                    </option>
+                                    <option>7261 Funeral Services and Crematories</option>
+                                    <option>7276 Tax Preparation Services</option>
+                                    <option>7278 Buying and Shopping Services and Clubs</option>
+                                    <option>7296 Clothing Rental – Costumes, Uniforms, Formal Wear</option>
+                                    <option>7298 Health and Beauty Spas</option>
+                                    <option>7299 Counseling Services - Debt, Marriage, and Personal;
+                                        Miscellaneous
+                                        Personal Services - Not Elsewhere Classified</option>
+                                    <option>7311 Advertising Services</option>
+                                    <option>7321 Consumer Credit Reporting Agencies</option>
+                                    <option>7333 Commercial Photography, Art, and Graphics</option>
+                                    <option>7338 Quick Copy, Reproduction, and Blueprinting Services</option>
+                                    <option>7339 Stenographic Service</option>
+                                    <option>7342 Exterminating and Disinfecting Services</option>
+                                    <option>7349 Cleaning, Maintenance, and Janitorial Services</option>
+                                    <option>7361 Employment Agencies, Temporary Help Services</option>
+                                    <option>7372 Computer Programming, Data Processing, and Integrated Systems
+                                        Design Services</option>
+                                    <option>7375 Information Retrieval Services</option>
+                                    <option>7379 Computer Maintenance, Repair and Services (Not Elsewhere
+                                        Classified)</option>
+                                    <option>7392 Management, Consulting, and Public Relations Services</option>
+                                    <option>7393 Detective Agencies, Protective Agencies, and Security Services,
+                                        including Armored Cars and Guard Dogs</option>
+                                    <option>7394 Equipment, Tool, Furniture, and Appliance Rental and Leasing
+                                    </option>
+                                    <option>7395 Photofinishing Laboratories and Photo Developing</option>
+                                    <option>7399 Business Services - Not Elsewhere Classified</option>
+                                    <option>7512 Automobile rental agency - not elsewhere classified</option>
+                                    <option>7513 Truck and Utility Trailer Rentals</option>
+                                    <option>7519 Motor Home and Recreational Vehicle Rentals</option>
+                                    <option>7523 Parking Lots, Parking Meters and Garages</option>
+                                    <option>7531 Automotive Body Repair Shops</option>
+                                    <option>7534 Tire Retreading and Repair Shops</option>
+                                    <option>7535 Automotive Paint Shops</option>
+                                    <option>7538 Automotive Service Shops (Non-Dealer)</option>
+                                    <option>7542 Car Washes</option>
+                                    <option>7549 Towing Services</option>
+                                    <option>7622 Electronics Repair Shops</option>
+                                    <option>7623 Air Conditioning and Refrigeration Repair Shops</option>
+                                    <option>7629 Electrical and Small Appliance Repair Shops</option>
+                                    <option>7631 Watch, Clock and Jewelry Repair</option>
+                                    <option>7641 Furniture - Reupholster, Repair, and Refinishing</option>
+                                    <option>7692 Welding Services</option>
+                                    <option>7699 Miscellaneous Repair Shops and Related Services; Watch, Clock,
+                                        and
+                                        Jewelry Repair Shops; Welding Services</option>
+                                    <option>7829 Motion Picture & Video Tape Production and Distribution
+                                    </option>
+                                    <option>7832 Motion Picture Theater</option>
+                                    <option>7841 DVD/Video Tape Rental Stores</option>
+                                    <option>7911 Dance Halls, Studios, & Schools</option>
+                                    <option>7922 Theatrical Producers (except Motion Pictures) and Ticket
+                                        Agencies
+                                    </option>
+                                    <option>7929 Bands, Orchestras, & Misc Entertainment</option>
+                                    <option>7932 Billiard and Pool Establishments</option>
+                                    <option>7933 Bowling Alleys</option>
+                                    <option>7941 Commercial Sports; Professional Sports Clubs; Athletic Fields;
+                                        Sports Promoters</option>
+                                    <option>7991 Tourist Attractions and Exhibits</option>
+                                    <option>7992 Public Golf Courses</option>
+                                    <option>7993 Video Amusement Game Supplies</option>
+                                    <option>7994 Video Game Arcades and Establishments</option>
+                                    <option>7996 Amusement Parks, Circuses, Carnivals, and Fortune Tellers
+                                    </option>
+                                    <option>7997 Membership Clubs (Sports, Recreation, Athletic), Country Clubs,
+                                        and
+                                        Private Golf Courses</option>
+                                    <option>7998 Aquariums, Seaquariums, Dolphinariums, and Zoos</option>
+                                    <option>7999 Recreation Services - Not Elsewhere Classified</option>
+                                    <option>8011 Doctors and Physicians - Not Elsewhere Classified</option>
+                                    <option>8021 Dentists and Orthodontists</option>
+                                    <option>8031 Osteopaths</option>
+                                    <option>8041 Chiropractors</option>
+                                    <option>8042 Optometrists and Ophthalmologists</option>
+                                    <option>8043 Opticians, Optical Goods, and Eyeglasses</option>
+                                    <option>8049 Podiatrists and Chiropodists</option>
+                                    <option>8050 Nursing and Personal Care Facilities</option>
+                                    <option>8062 Hospitals</option>
+                                    <option>8071 Medical and Dental Laboratories</option>
+                                    <option>8099 Health Practitioners, Medical Services–Not Elsewhere Classified
+                                    </option>
+                                    <option>8111 Legal Services and Attorneys</option>
+                                    <option>8211 Elementary and Secondary Schools</option>
+                                    <option>8220 Colleges, Universities, Professional Schools, and Junior
+                                        Colleges
+                                    </option>
+                                    <option>8241 Correspondence Schools</option>
+                                    <option>8244 Business and Secretarial Schools</option>
+                                    <option>8249 Vocational and Trade Schools</option>
+                                    <option>8299 Schools and Educational Services - Not Elsewhere Classified
+                                    </option>
+                                    <option>8351 Child Care Services</option>
+                                    <option>8398 Charitable and Social Service Organizations</option>
+                                    <option>8641 Civic, Social, & Fraternal Associations</option>
+                                    <option>8651 Political Organizations</option>
+                                    <option>8661 Religious Organizations</option>
+                                    <option>8675 Automobile Associations</option>
+                                    <option>8699 Membership Organizations - Not Elsewhere Classified</option>
+                                    <option>8734 Testing laboratories (non-medical)</option>
+                                    <option>8911 Architectural, Engineering, and Surveying Services</option>
+                                    <option>8931 Accounting, Auditing, and Bookkeeping Services</option>
+                                    <option>8999 Professional Services - Not Elsewhere Classified; Medical
+                                        Services
+                                        and Health Practitioners (Not Elsewhere Classified); Testing
+                                        Laboratories
+                                        (Not Medical)</option>
+                                    <option>9211 Court Costs, Including Alimony and Child Support</option>
+                                    <option>9222 Government Fines</option>
+                                    <option>9311 Tax Payments</option>
+                                    <option>9399 Bail & Bond Payments; Government Services - Not Elsewhere
+                                        Classified; U.S. Federal Government Agencies</option>
+                                </datalist>
+                            </div>
+
+
+
+
+
+
+
+
+                            <div hidden>
+                                <label for='LEADCF30'> 
+                                    Plan<span style='color:red;'>*</span></label>
+                                <input class='zcwf_col_fld_slt' id='LEADCF30' name='LEADCF30' value="4.25% + 10 cents - No Location Reg. Fee">
+
+                            </div>
+
+
+
+                            <!-- <div class="buttons">
+                                    <a class="prev__btn" onclick="prevForm();">Back</a>
+                                    <a class="nxt__btn" id="submitBtn" onclick="nextForm();">Next</a>
+                                </div> -->
+
+                            <div class='buttons' style="text-align: center; justify-content: space-evenly;">
+
+                                <!-- <input type='reset' class='zcwf_button' name='reset' value='Reset' title='Reset'> -->
+                                <button type='submit' id='formsubmit' class='formsubmit nxt__btn' value='Submit'
+                                    title='Submit' style="border-color:#41a8ec">Submit</button>
+                            </div>
+                        </div>
+
+            </div>
+            </fieldset>
+
+
+            <script>
+                // Here's my data model
+                var ViewModel = function (company_obs, dba_obs, ein_obs, inc_obs, bank_obs, route_obs, account_obs, avtick_obs, hightick_obs, annualrev_obs, bizstreet_obs, bizcity_obs, bizzip_obs, bizphone_obs, bizemail_obs, bizweb_obs, jobtitle_obs, fname_obs, lname_obs, perstreet_obs, perscity_obs, perszip_obs, pers_obs, email_obs, dob_obs, ssn_obs) {
+                    this.bind_company = ko.observable(company_obs);
+                    this.bind_dba = ko.observable(dba_obs);
+                    this.bind_ein = ko.observable(ein_obs);
+                    this.bind_inc = ko.observable(inc_obs);
+                    this.bind_bank_name = ko.observable(bank_obs);
+                    this.bind_routingNum = ko.observable(route_obs);
+                    this.bind_accountNum = ko.observable(account_obs);
+                    this.bind_avTick = ko.observable(avtick_obs);
+                    this.bind_highTick = ko.observable(hightick_obs);
+                    this.bind_annualRev = ko.observable(annualrev_obs);
+                    this.bind_biz_street = ko.observable(bizstreet_obs);
+                    this.bind_biz_city = ko.observable(bizcity_obs);
+                    this.bind_biz_zip = ko.observable(bizzip_obs);
+                    this.bind_biz_phone = ko.observable(bizphone_obs);
+                    this.bind_biz_email = ko.observable(bizemail_obs);
+                    this.bind_biz_web = ko.observable(bizweb_obs);
+                    this.bind_jobTitle = ko.observable(jobtitle_obs);
+                    this.bind_fName = ko.observable(fname_obs);
+                    this.bind_lName = ko.observable(lname_obs);
+                    this.bind_pers_street = ko.observable(perstreet_obs);
+                    this.bind_pers_city = ko.observable(perscity_obs);
+                    this.bind_pers_zip = ko.observable(perszip_obs);
+                    this.bind_mobile = ko.observable(pers_obs);
+                    this.bind_pers_email = ko.observable(email_obs);
+                    this.bind_pers_dob = ko.observable(dob_obs);
+                    this.bind_pers_ssn = ko.observable(ssn_obs);
+
+                    this.company = ko.computed(function () {
+                        // Knockout tracks dependencies automatically. It knows that fullName depends on firstName and lastName, because these get called when evaluating fullName.
+                        return this.bind_company();
+                    }, this);
+
+                    this.dba = ko.computed(function () {
+                        return this.bind_dba();
+                    }, this);
+
+                    this.ein = ko.computed(function () {
+                        return this.bind_ein();
+                    }, this);
+
+                    this.inc = ko.computed(function () {
+                        return this.bind_inc();
+                    }, this);
+
+                    this.bank_name = ko.computed(function () {
+                        return this.bind_bank_name();
+                    }, this);
+
+                    this.routingNum = ko.computed(function () {
+                        return this.bind_routingNum();
+                    }, this);
+
+                    this.accountNum = ko.computed(function () {
+                        return this.bind_accountNum();
+                    }, this);
+
+                    this.avTick = ko.computed(function () {
+                        return this.bind_avTick();
+                    }, this);
+
+                    this.highTick = ko.computed(function () {
+                        return this.bind_highTick();
+                    }, this);
+
+                    this.annualRev = ko.computed(function () {
+                        return this.bind_annualRev();
+                    }, this);
+
+                    this.biz_street = ko.computed(function () {
+                        return this.bind_biz_street();
+                    }, this);
+
+                    this.biz_city = ko.computed(function () {
+                        return this.bind_biz_city();
+                    }, this);
+
+                    this.biz_zip = ko.computed(function () {
+                        return this.bind_biz_zip();
+                    }, this);
+
+                    this.biz_phone = ko.computed(function () {
+                        return this.bind_biz_phone();
+                    }, this);
+
+                    this.biz_email = ko.computed(function () {
+                        return this.bind_biz_email();
+                    }, this);
+
+                    this.biz_web = ko.computed(function () {
+                        return this.bind_biz_web();
+                    }, this);
+
+                    this.jobTitle = ko.computed(function () {
+                        return this.bind_jobTitle();
+                    }, this);
+
+                    this.fName = ko.computed(function () {
+                        return this.bind_fName();
+                    }, this);
+
+                    this.lname = ko.computed(function () {
+                        return this.bind_lName();
+                    }, this);
+
+                    this.pers_street = ko.computed(function () {
+                        return this.bind_pers_street();
+                    }, this);
+
+                    this.pers_city = ko.computed(function () {
+                        return this.bind_pers_city();
+                    }, this);
+
+                    this.pers_zip = ko.computed(function () {
+                        return this.bind_pers_zip();
+                    }, this);
+
+                    this.mobile = ko.computed(function () {
+                        return this.bind_mobile();
+                    }, this);
+
+                    this.pers_email = ko.computed(function () {
+                        return this.bind_pers_email();
+                    }, this);
+
+                    this.dob = ko.computed(function () {
+                        return this.bind_pers_dob();
+                    }, this);
+
+                    this.ssn = ko.computed(function () {
+                        return this.bind_pers_ssn();
+                    }, this);
+                };
+
+                ko.applyBindings(new ViewModel("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "")); // This makes Knockout get to work
+            </script>
+
+
+
+
+            <script>
+                function validateEmail857022000077249001() {
+                    var form = document.forms['WebToLeads857022000077249001'];
+                    var emailFld = form.querySelectorAll('[ftype=email]');
+                    var i;
+                    for (i = 0; i < emailFld.length; i++) {
+                        var emailVal = emailFld[i].value;
+                        if ((emailVal.replace(/^\s+|\s+$/g, '')).length != 0) {
+                            var atpos = emailVal.indexOf('@');
+                            var dotpos = emailVal.lastIndexOf('.');
+                            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= emailVal.length) {
+                                alert('Please enter a valid email address. ');
+                                emailFld[i].focus();
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                }
+                function validateDateFormat857022000077249001() {
+                    var form = document.forms['WebToLeads857022000077249001'];
+                    var dateFlds = form.querySelectorAll('[ftype=date]');
+                    var i;
+                    for (i = 0; i < dateFlds.length; i++) {
+                        var dateFld = dateFlds[i];
+                        var usrPtrn = dateFld.placeholder;
+                        var dateVal = dateFld.value;
+                        if (dateVal.trim() != '') {
+                            var vald = dateFormatConvert.validate(dateVal, usrPtrn);
+                            if (!vald) {
+                                alert('Please enter a valid date ');
+                                dateFld.focus();
+                                return false;
+                            }
+                        }
+                    }
+                    return true;
+                }
+
+                function checkMandatory857022000077249001() {
+                    var mndFileds = new Array('Company', 'First Name', 'Last Name', 'Email', 'Phone', 'Mobile', 'Website', 'Lead Source', 'Street', 'City', 'State', 'match_Zip_Code', 'Secondary Email', 'LEADCF1', 'LEADCF3', 'LEADCF2', 'LEADCF4', 'LEADCF81', 'LEADCF5', 'LEADCF6', 'LEADCF7', 'LEADCF8', 'LEADCF11', 'LEADCF12', 'LEADCF13', 'LEADCF14', 'LEADCF15', 'LEADCF30');
+                    var fldLangVal = new Array('Company', 'First\x20Name', 'Last\x20Name', 'Email', 'Phone', 'Mobile', 'Website', 'Lead\x20Source', 'Street', 'City', 'State', 'Zip\x20Code', 'Secondary\x20Email', 'App\x20Received', 'App\x20Status', 'EIN\x2FTIN\x2FTax\x20ID', 'MCC\x20Code', 'Date\x20of\x20Incorporation', 'Business\x20Type', 'Ownership\x20Type', 'Principal\x20Zip\x20Code', 'Principal\x20State', 'Principal\x20Street', 'Principal\x20City', 'Bank\x20Name', 'Bank\x20Account\x20Number', 'Bank\x20Routing\x20Number', 'Pricing\x20Plan');
+                    for (i = 0; i < mndFileds.length; i++) {
+                        var fieldObj = document.forms['WebToLeads857022000077249001'][mndFileds[i]];
+                        if (fieldObj) {
+                            if (((fieldObj.value).replace(/^\s+|\s+$/g, '')).length == 0) {
+                                if (fieldObj.type == 'file') {
+                                    alert('Please select a file to upload.');
+                                    fieldObj.focus();
+                                    return false;
+                                }
+                                alert(fldLangVal[i] + ' cannot be empty.');
+                                fieldObj.focus();
+                                return false;
+                            } else if (fieldObj.nodeName == 'SELECT') {
+                                if (fieldObj.options[fieldObj.selectedIndex].value == '-None-') {
+                                    alert(fldLangVal[i] + ' cannot be none.');
+                                    fieldObj.focus();
+                                    return false;
+                                }
+                            } else if (fieldObj.type == 'checkbox') {
+                                if (fieldObj.checked == false) {
+                                    alert('Please accept  ' + fldLangVal[i]);
+                                    fieldObj.focus();
+                                    return false;
+                                }
+                            }
+                            try {
+                                if (fieldObj.name == 'Last Name') {
+                                    name = fieldObj.value;
+                                }
+                            } catch (e) { }
+                        }
+                    }
+                    if (!validateEmail857022000077249001()) { return false; }
+
+                    if (!validateDateFormat857022000077249001()) { return false; }
+                    document.querySelector('.crmWebToEntityForm .formsubmit').setAttribute('disabled', true);
+                }
+
+                function tooltipShow857022000077249001(el) {
+                    var tooltip = el.nextElementSibling;
+                    var tooltipDisplay = tooltip.style.display;
+                    if (tooltipDisplay == 'none') {
+                        var allTooltip = document.getElementsByClassName('zcwf_tooltip_over');
+                        for (i = 0; i < allTooltip.length; i++) {
+                            allTooltip[i].style.display = 'none';
+                        }
+                        tooltip.style.display = 'block';
+                    } else {
+                        tooltip.style.display = 'none';
+                    }
+                }
+            </script>
+            <!-- Do not remove this --- Analytics Tracking code starts -->
+            <script id='wf_anal'
+                src='https://crm.zohopublic.com/crm/WebFormAnalyticsServeServlet?rid=b500ab986399e27dfe8e40280dda5fe4c56784baa0ec67a83a8cfdbc6f1631ddfe653a25a9716708cbfc1242cfd30f2cgid06429c98c40e551af65b25aa6e921849b8e4a024cb7b5b61bec01aaa8f500b1bgid3011fced12e328da44f51880a666afc28fca3c4a287d7a23c1f8289102bbcf14gidd3a0b30402b0d46757121f351059fa94a3dd68cd455e7ef4e72e6e9f50555e56&tw=01a5f7ca58a33fb4cf4d7a9270593bcce6c34c70229cac99c10fe73c976da479'></script>
+            <!-- Do not remove this --- Analytics Tracking code ends. -->
+            </form>
+
+            <!-- Pricing Container --->
+            <div class="pricing__container ml-sm-auto mt-5" hidden>
+                <div class="card card-pricing text-center px-3 mb-4">
+                    <span class="h6 w-60 mx-auto px-4 py-1 rounded-bottom bg-primary text-white shadow-sm">Pricing
+                        Plan</span>
+                    <div class="bg-transparent card-header pt-4 border-0">
+                        <h4 class="font-weight-normal text-primary text-center mb-0" data-pricing-value="15"
+                            id="price_plan">Flat Rate
+                            3.25 % + 10¢ <span class="h6 text-muted ml-2"></span></h4>
+                    </div>
+                    <div class="card-body pt-0" id="fees_display">
+                        <ul class="list-unstyled mb-4">
+                            <li>Account Registration Fee $99</li>
+                            <li>Activation Per Terminal $9.99</li>
+                            <li>$9 per month without SIM</li>
+                            <li>$14 per month with SIM</li>
+                        </ul>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="main.js" type="text/javascript"></script>
+
+</body>
+
+</html>
